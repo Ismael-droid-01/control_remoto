@@ -30,12 +30,43 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             .padding(WindowInsets.navigationBars.asPaddingValues())
     ) {
 
-        // 🔼 Top Row
+        // 🔴 Fila solo con Power (centrado arriba)
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(60.dp)
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
+            ) {
+                IconButton(
+                    onClick = {
+                        showMessage("Power")
+                        bleServer?.sendText("Power")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.PowerSettingsNew,
+                        contentDescription = "Power",
+                        tint = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
+            }
+        }
+
+        // 🔵 Fila con Bluetooth y WiFi más abajo (centrado)
+        Row(
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 80.dp)  // ajusta para subir/bajar
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(175.dp, Alignment.CenterHorizontally)
         ) {
             Surface(
                 shape = CircleShape,
@@ -55,28 +86,6 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         Icons.Filled.Bluetooth,
                         contentDescription = "Bluetooth",
                         tint = MaterialTheme.colorScheme.onSecondaryContainer
-                    )
-                }
-            }
-
-            Surface(
-                shape = CircleShape,
-                shadowElevation = 8.dp,
-                modifier = Modifier.size(64.dp)
-            ) {
-                IconButton(
-                    onClick = {
-                        showMessage("Power")
-                        bleServer?.sendText("Power")
-                    },
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
-                        .fillMaxSize()
-                ) {
-                    Icon(
-                        Icons.Filled.PowerSettingsNew,
-                        contentDescription = "Power",
-                        tint = MaterialTheme.colorScheme.onErrorContainer
                     )
                 }
             }
