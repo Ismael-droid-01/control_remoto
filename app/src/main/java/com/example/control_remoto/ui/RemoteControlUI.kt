@@ -23,43 +23,84 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         Toast.makeText(context, "Acción: $message", Toast.LENGTH_SHORT).show()
     }
 
-    Box(modifier = modifier.fillMaxSize().padding(16.dp).padding(WindowInsets.navigationBars.asPaddingValues())) {
+    Box(
+        modifier.fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
+            .padding(16.dp)
+            .padding(WindowInsets.navigationBars.asPaddingValues())
+    ) {
 
         // 🔼 Top Row
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(60.dp)
         ) {
-            IconButton(
-                onClick = {
-                    showMessage("Bluetooth")
-                    bleServer?.sendText("Bluetooth")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.Bluetooth, contentDescription = "Bluetooth", tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("Bluetooth")
+                        bleServer?.sendText("Bluetooth")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.Bluetooth,
+                        contentDescription = "Bluetooth",
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                }
             }
 
-            IconButton(
-                onClick = {
-                    showMessage("Power")
-                    bleServer?.sendText("Power")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.errorContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.PowerSettingsNew, contentDescription = "Power", tint = MaterialTheme.colorScheme.onErrorContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("Power")
+                        bleServer?.sendText("Power")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.PowerSettingsNew,
+                        contentDescription = "Power",
+                        tint = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
             }
 
-            IconButton(
-                onClick = {
-                    showMessage("WiFi")
-                    bleServer?.sendText("WiFi")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.tertiaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.Wifi, contentDescription = "WiFi", tint = MaterialTheme.colorScheme.onTertiaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("WiFi")
+                        bleServer?.sendText("WiFi")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.tertiaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.Wifi,
+                        contentDescription = "WiFi",
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer
+                    )
+                }
             }
         }
 
@@ -67,27 +108,51 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         Row(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(start = 8.dp, bottom = 60.dp),
+                .padding(start = 6.dp, bottom = 50.dp),
             horizontalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            IconButton(
-                onClick = {
-                    showMessage("GiroIzq")
-                    bleServer?.sendText("GiroIzq")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.Undo, contentDescription = "GiroIzq", tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("GiroIzq")
+                        bleServer?.sendText("GiroIzq")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.Undo,
+                        contentDescription = "GiroIzq",
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
 
-            IconButton(
-                onClick = {
-                    showMessage("GiroDer")
-                    bleServer?.sendText("GiroDer")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.Redo, contentDescription = "GiroDer", tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("GiroDer")
+                        bleServer?.sendText("GiroDer")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.Redo,
+                        contentDescription = "GiroDer",
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
         }
 
@@ -99,55 +164,101 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(30.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            IconButton(
-                onClick = {
-                    showMessage("Arriba")
-                    bleServer?.sendText("Arriba")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.ArrowUpward, contentDescription = "Arriba", tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("Arriba")
+                        bleServer?.sendText("Arriba")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.ArrowUpward,
+                        contentDescription = "Arriba",
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
 
-            IconButton(
-                onClick = {
-                    showMessage("Abajo")
-                    bleServer?.sendText("Abajo")
-                },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer, CircleShape).size(64.dp)
+            Surface(
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.size(64.dp)
             ) {
-                Icon(Icons.Filled.ArrowDownward, contentDescription = "Abajo", tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                IconButton(
+                    onClick = {
+                        showMessage("Abajo")
+                        bleServer?.sendText("Abajo")
+                    },
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .fillMaxSize()
+                ) {
+                    Icon(
+                        Icons.Filled.ArrowDownward,
+                        contentDescription = "Abajo",
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
         }
 
         // ⛔ Botón Stop (subido un poco)
-        IconButton(
-            onClick = {
-                showMessage("Stop")
-                bleServer?.sendText("Stop")
-            },
+        Surface(
+            shape = CircleShape,
+            shadowElevation = 12.dp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 130.dp)
-                .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
                 .size(72.dp)
         ) {
-            Icon(Icons.Filled.Stop, contentDescription = "Stop", tint = MaterialTheme.colorScheme.onErrorContainer)
+            IconButton(
+                onClick = {
+                    showMessage("Stop")
+                    bleServer?.sendText("Stop")
+                },
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
+                    .fillMaxSize()
+            ) {
+                Icon(
+                    Icons.Filled.Stop,
+                    contentDescription = "Stop",
+                    tint = MaterialTheme.colorScheme.onErrorContainer
+                )
+            }
         }
 
         // 💡 Botón Luces (debajo del Stop)
-        IconButton(
-            onClick = {
-                showMessage("Luces")
-                bleServer?.sendText("Luces")
-            },
+        Surface(
+            shape = CircleShape,
+            shadowElevation = 8.dp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp)
-                .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
                 .size(64.dp)
         ) {
-            Icon(Icons.Filled.Lightbulb, contentDescription = "Luces", tint = MaterialTheme.colorScheme.onPrimaryContainer)
+            IconButton(
+                onClick = {
+                    showMessage("Luces")
+                    bleServer?.sendText("Luces")
+                },
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                    .fillMaxSize()
+            ) {
+                Icon(
+                    Icons.Filled.Lightbulb,
+                    contentDescription = "Luces",
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
         }
     }
 }
