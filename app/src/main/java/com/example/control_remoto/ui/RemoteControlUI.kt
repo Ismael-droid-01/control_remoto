@@ -15,6 +15,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.isSystemInDarkTheme
 import com.example.control_remoto.ui.theme.*
+import androidx.compose.foundation.border
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+
+fun Modifier.buttonBorder(
+    color: Color,
+    width: Dp = 2.dp,
+    shape: Shape = CircleShape
+) = this.border(width, color, shape)
 
 @Composable
 fun RemoteControlUI(modifier: Modifier = Modifier) {
@@ -36,7 +46,8 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             .padding(WindowInsets.navigationBars.asPaddingValues())
     ) {
 
-        // 🔴 Botón Power
+        // 🔴 Botón Power (color rojo)
+        val powerColor = MaterialTheme.colorScheme.errorContainer
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -46,7 +57,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             Surface(
                 shape = CircleShape,
                 shadowElevation = 8.dp,
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(80.dp)
             ) {
                 IconButton(
                     onClick = {
@@ -54,8 +65,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("Power")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
+                        .background(powerColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(powerColor)
                 ) {
                     Icon(
                         Icons.Filled.PowerSettingsNew,
@@ -67,6 +79,8 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         }
 
         // 🔵 Bluetooth y WiFi
+        val bluetoothColor = MaterialTheme.colorScheme.secondaryContainer
+        val wifiColor = MaterialTheme.colorScheme.tertiaryContainer
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -85,8 +99,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("Bluetooth")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape)
+                        .background(bluetoothColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(bluetoothColor)
                 ) {
                     Icon(
                         Icons.Filled.Bluetooth,
@@ -107,8 +122,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("WiFi")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.tertiaryContainer, CircleShape)
+                        .background(wifiColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(wifiColor)
                 ) {
                     Icon(
                         Icons.Filled.Wifi,
@@ -119,7 +135,8 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // ⬅️➡️ Giro Izq y Der
+        // ⬅️➡️ Giro Izq y Der (color primario)
+        val giroColor = MaterialTheme.colorScheme.primaryContainer
         Row(
             modifier = Modifier
                 .align(Alignment.BottomStart)
@@ -137,8 +154,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("GiroIzq")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .background(giroColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(giroColor)
                 ) {
                     Icon(
                         Icons.Filled.Undo,
@@ -159,8 +177,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("GiroDer")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .background(giroColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(giroColor)
                 ) {
                     Icon(
                         Icons.Filled.Redo,
@@ -171,7 +190,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // 🔼🔽 Arriba y Abajo
+        // 🔼🔽 Arriba y Abajo (color primario)
         Column(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
@@ -190,8 +209,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("Arriba")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .background(giroColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(giroColor)
                 ) {
                     Icon(
                         Icons.Filled.ArrowUpward,
@@ -212,8 +232,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                         bleServer?.sendText("Abajo")
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .background(giroColor, CircleShape)
                         .fillMaxSize()
+                        .buttonBorder(giroColor)
                 ) {
                     Icon(
                         Icons.Filled.ArrowDownward,
@@ -241,6 +262,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .background(stopBackground, CircleShape)
                     .fillMaxSize()
+                    .buttonBorder(stopBackground)
             ) {
                 Icon(
                     Icons.Filled.Stop,
@@ -250,7 +272,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // 💡 Botón Luces
+        // 💡 Botón Luces (color primario)
         Surface(
             shape = CircleShape,
             shadowElevation = 8.dp,
@@ -265,8 +287,9 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                     bleServer?.sendText("Luces")
                 },
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                    .background(giroColor, CircleShape)
                     .fillMaxSize()
+                    .buttonBorder(giroColor)
             ) {
                 Icon(
                     Icons.Filled.Lightbulb,
