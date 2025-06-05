@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.isSystemInDarkTheme
+import com.example.control_remoto.ui.theme.*
 
 @Composable
 fun RemoteControlUI(modifier: Modifier = Modifier) {
@@ -23,6 +25,10 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         Toast.makeText(context, "Acción: $message", Toast.LENGTH_SHORT).show()
     }
 
+    val isDarkTheme = isSystemInDarkTheme()
+    val stopBackground = if (isDarkTheme) StopColorDark else StopColorLight
+    val stopIconColor = if (isDarkTheme) OnStopColorDark else OnStopColorLight
+
     Box(
         modifier.fillMaxSize()
             .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
@@ -30,7 +36,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             .padding(WindowInsets.navigationBars.asPaddingValues())
     ) {
 
-        // 🔴 Fila solo con Power (centrado arriba)
+        // 🔴 Botón Power
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -60,11 +66,11 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // 🔵 Fila con Bluetooth y WiFi más abajo (centrado)
+        // 🔵 Bluetooth y WiFi
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(top = 80.dp)  // ajusta para subir/bajar
+                .padding(top = 80.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(175.dp, Alignment.CenterHorizontally)
         ) {
@@ -218,7 +224,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // ⛔ Botón Stop (subido un poco)
+        // ⛔ Botón Stop con color propio
         Surface(
             shape = CircleShape,
             shadowElevation = 12.dp,
@@ -233,18 +239,18 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
                     bleServer?.sendText("Stop")
                 },
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.errorContainer, CircleShape)
+                    .background(stopBackground, CircleShape)
                     .fillMaxSize()
             ) {
                 Icon(
                     Icons.Filled.Stop,
                     contentDescription = "Stop",
-                    tint = MaterialTheme.colorScheme.onErrorContainer
+                    tint = stopIconColor
                 )
             }
         }
 
-        // 💡 Botón Luces (debajo del Stop)
+        // 💡 Botón Luces
         Surface(
             shape = CircleShape,
             shadowElevation = 8.dp,
