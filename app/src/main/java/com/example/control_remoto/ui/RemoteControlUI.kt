@@ -32,7 +32,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
     val bleServer = (context as? MainActivity)?.bleServer
 
     fun showMessage(message: String) {
-        Toast.makeText(context, "Acción: $message", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "$message", Toast.LENGTH_SHORT).show()
     }
 
     val isDarkTheme = isSystemInDarkTheme()
@@ -61,7 +61,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("Power")
+                        showMessage("Arrancando mototes...")
                         bleServer?.sendText("Power")
                     },
                     modifier = Modifier
@@ -95,7 +95,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("Bluetooth")
+                        showMessage("Bluetooth donde esta mi troca?")
                         bleServer?.sendText("Bluetooth")
                     },
                     modifier = Modifier
@@ -118,7 +118,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("WiFi")
+                        showMessage("WiFi donde esta el podrido?")
                         bleServer?.sendText("WiFi")
                     },
                     modifier = Modifier
@@ -150,7 +150,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("GiroIzq")
+                        showMessage("Pa la izquierda mi loco")
                         bleServer?.sendText("GiroIzq")
                     },
                     modifier = Modifier
@@ -173,7 +173,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("GiroDer")
+                        showMessage("Ahora pa la derecha")
                         bleServer?.sendText("GiroDer")
                     },
                     modifier = Modifier
@@ -205,7 +205,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("Arriba")
+                        showMessage("Avanza carcacha")
                         bleServer?.sendText("Arriba")
                     },
                     modifier = Modifier
@@ -228,7 +228,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("Abajo")
+                        showMessage("Pa tras pa tras")
                         bleServer?.sendText("Abajo")
                     },
                     modifier = Modifier
@@ -256,7 +256,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         ) {
             IconButton(
                 onClick = {
-                    showMessage("Stop")
+                    showMessage("Parale a tu tren")
                     bleServer?.sendText("Stop")
                 },
                 modifier = Modifier
@@ -283,7 +283,7 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
         ) {
             IconButton(
                 onClick = {
-                    showMessage("Luces")
+                    showMessage("Cuchau")
                     bleServer?.sendText("Luces")
                 },
                 modifier = Modifier
