@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.isSystemInDarkTheme
 
 private val LightColors = lightColorScheme(
-    primary = Color(0xFFD9A800),             // Amarillo mostaza cálido
+    primary = Color(0xFFF8D76E),            // Amarillo mostaza cálido
     onPrimary = Color.Black,
     primaryContainer = Color(0xFFF1E08A),    // Amarillo pastel suave
     onPrimaryContainer = Color(0xFF5D4300),
@@ -33,9 +33,9 @@ private val LightColors = lightColorScheme(
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFFB58800),              // Amarillo mostaza oscuro
+    primary = Color(0xFFF2C933),              // Amarillo mostaza oscuro
     onPrimary = Color.Black,
-    primaryContainer = Color(0xFFD9A800),
+    primaryContainer = Color(0xFFE6C85F),
     onPrimaryContainer = Color(0xFF5D4300),
 
     secondary = Color(0xFF1565C0),           // Azul oscuro (Bluetooth)

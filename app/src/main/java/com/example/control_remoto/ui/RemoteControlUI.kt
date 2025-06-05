@@ -190,85 +190,88 @@ fun RemoteControlUI(modifier: Modifier = Modifier) {
             }
         }
 
-        // 🔼🔽 Arriba y Abajo (color primario)
-        Column(
+        // 🔼🔽 Arriba, Abajo y ⛔ Stop (botón stop a la izquierda)
+        Row(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(30.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalArrangement = Arrangement.spacedBy(30.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            // Botón Stop
             Surface(
                 shape = CircleShape,
-                shadowElevation = 8.dp,
-                modifier = Modifier.size(64.dp)
+                shadowElevation = 12.dp,
+                modifier = Modifier.size(72.dp)
             ) {
                 IconButton(
                     onClick = {
-                        showMessage("Avanza carcacha")
-                        bleServer?.sendText("Arriba")
+                        showMessage("Parale a tu tren")
+                        bleServer?.sendText("Stop")
                     },
                     modifier = Modifier
-                        .background(giroColor, CircleShape)
+                        .background(stopBackground, CircleShape)
                         .fillMaxSize()
-                        .buttonBorder(giroColor)
+                        .buttonBorder(stopBackground)
                 ) {
                     Icon(
-                        Icons.Filled.ArrowUpward,
-                        contentDescription = "Arriba",
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        Icons.Filled.Stop,
+                        contentDescription = "Stop",
+                        tint = stopIconColor
                     )
                 }
             }
 
-            Surface(
-                shape = CircleShape,
-                shadowElevation = 8.dp,
-                modifier = Modifier.size(64.dp)
+            // Columna con Arriba y Abajo
+            Column(
+                verticalArrangement = Arrangement.spacedBy(30.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                IconButton(
-                    onClick = {
-                        showMessage("Pa tras pa tras")
-                        bleServer?.sendText("Abajo")
-                    },
-                    modifier = Modifier
-                        .background(giroColor, CircleShape)
-                        .fillMaxSize()
-                        .buttonBorder(giroColor)
+                Surface(
+                    shape = CircleShape,
+                    shadowElevation = 8.dp,
+                    modifier = Modifier.size(64.dp)
                 ) {
-                    Icon(
-                        Icons.Filled.ArrowDownward,
-                        contentDescription = "Abajo",
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
+                    IconButton(
+                        onClick = {
+                            showMessage("Avanza carcacha")
+                            bleServer?.sendText("Arriba")
+                        },
+                        modifier = Modifier
+                            .background(giroColor, CircleShape)
+                            .fillMaxSize()
+                            .buttonBorder(giroColor)
+                    ) {
+                        Icon(
+                            Icons.Filled.ArrowUpward,
+                            contentDescription = "Arriba",
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
                 }
-            }
-        }
 
-        // ⛔ Botón Stop con color propio
-        Surface(
-            shape = CircleShape,
-            shadowElevation = 12.dp,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 130.dp)
-                .size(72.dp)
-        ) {
-            IconButton(
-                onClick = {
-                    showMessage("Parale a tu tren")
-                    bleServer?.sendText("Stop")
-                },
-                modifier = Modifier
-                    .background(stopBackground, CircleShape)
-                    .fillMaxSize()
-                    .buttonBorder(stopBackground)
-            ) {
-                Icon(
-                    Icons.Filled.Stop,
-                    contentDescription = "Stop",
-                    tint = stopIconColor
-                )
+                Surface(
+                    shape = CircleShape,
+                    shadowElevation = 8.dp,
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    IconButton(
+                        onClick = {
+                            showMessage("Pa tras pa tras")
+                            bleServer?.sendText("Abajo")
+                        },
+                        modifier = Modifier
+                            .background(giroColor, CircleShape)
+                            .fillMaxSize()
+                            .buttonBorder(giroColor)
+                    ) {
+                        Icon(
+                            Icons.Filled.ArrowDownward,
+                            contentDescription = "Abajo",
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                }
             }
         }
 
